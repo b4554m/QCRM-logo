@@ -1,93 +1,162 @@
-    /* The following code executes after DOM content loaded */
-    // Animate logo boxes upon load by assigning an animation
-    if (document.readyState !== "complete")
-        return;
-    let animationCount = "logo-animation";
-    let ele = document.getElementsByClassName("box");
-    for (let i = 0; i < ele.length; ++i) {
-        ele[i].className = ele[i].className + " " + animationCount + i;
-        // console.log(animationCount + i)
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
 
-    let el1 = document.getElementsByClassName("outer-box");
-    console.log(el1)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+html {
+    width: 100%;
+    height: 100%;
+    
+}
 
-    setTimeout(() => {
-        el1[0].className = el1[0].className + " " + "remove-outer-box-animation";
-    }, 10);
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    
+}
 
-    document.body.className = document.body.className + " body-animation";
+.wrap-info {
+    transform: perspective(1000px) rotateX(-40deg);
+}
 
-    let intervalSec = 10; // How many seconds between each background change?
-    let times = 6;  // How many times should the background change?
-    let bkgChangeCount = 0; // How many times did the background change?
-    let lastBkgIdx = -1;    // What was the last background index? This is used to avoid reapeating the same background in two subsequent cycles.
-    let timeoutId = null;
-    // Array of background pool to randoml choose from
-    const backgrounds = [
-        "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.pexels.com/photos/593655/pexels-photo-593655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.pexels.com/photos/414102/pexels-photo-414102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        "https://images.unsplash.com/photo-1596387451750-f7bfb51461ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"
-    ];
+.outer-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: hsl(200, 36%, 95%);
+    opacity: 0.9;
+}
 
-    // The background change procedure
-    const changeBackground = () => {
-        if (timeoutId)
-            clearTimeout(timeoutId);
+.remove-outer-box-animation {
+    transition: 0.5s;
+    transform: perspective(1000px) rotateX(32.5deg) scale(1, 1.5);
+}
 
-        console.log("Cycle: ", bkgChangeCount);
+.inner-section {
+    position: absolute;
+    min-height: auto;
+    width: 20%;
+    display: grid;
+    place-items: center;
+    margin-bottom: 32rem;
+}
+.inner-box {
+    display: flex;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    background-color: white;
+    border-radius: 20%;
+}
+h1 {
+    text-align: center;
+    margin-top: 15%;
+    font-size: 2rem;
+    font-weight: 500;
+}
+p {
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+}
+.username, .password, .remember-device {
+    margin-top: 1.5rem;
+}
+#username, #password {
+    padding: 0.7rem 11rem 0.7rem 0.7rem;
+}
+input {
+    margin-left: 3.5rem;
+    border: 1.2px solid #333;
+}
+#btn-sign-in {
+    margin: 3.5rem 3.5rem;
+    width: 21rem;
+    height: 2.5rem;
+    align-items: center;
+    background-color: #3b9ffc;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: large;
+}
+#btn-sign-in:hover {
+    background-color: hsl(209, 92%, 65%);
+}
+#btn-sign-in:active {
+    background-color: #3b9ffc;
+}
 
-        let bkgEle = document.body;
+div .box:first-child {
+    position: absolute;
+    bottom: 140%;
+    background-color: hsla(34, 100%, 50%, 0.900);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 20%;
+    z-index: 0;
+}
+div .box:nth-child(2) {
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    background-color: hsl(202, 100%, 50%, 0.920);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 20%;
+    z-index: 3;
+}
+div .box:nth-child(3) {
+    position: absolute;
+    bottom: 105%;
+    left: 60%;
+    background-color: hsla(325, 66%, 45%, 0.850);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 20%;
+    z-index: 2;
+}
 
-        /*
-            Process:
-            - At first cycle (on initial page load), attempt to load
-            recently used background index from localStorage.
-            - If there exists an index, that means this is not the first time
-            the page has been opened, and that this was the index of the last background presented
-            to the user before either the user closed the page or the cycles specified in _times_
-            variable has been completed, so we load the background.
-            - If this is not the first cycle, meaning any subsequent cycle after initial page load,
-            or if this is the first cycle but there is no recent eackground saved in localStorage,
-            and we load random background from the _background_ array.
-            
-        */
-        let savedBkgIdx = localStorage.getItem("lastBkgIdx");
-        if (savedBkgIdx >= 0 && bkgChangeCount === 0) {
-            bkgIdx = savedBkgIdx;
-        } else {
-            bkgIdx = lastBkgIdx;
-            // Avoid repeating backgrounds in two subsequent cycles
-            // by keeping on generating a random number until they differ
-            while (bkgIdx === lastBkgIdx)
-                // Generate random number for a random background index
-                bkgIdx = Math.floor(Math.random() * (backgrounds.length));
-        }
+div .box:last-child {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    background-color: hsla(123, 48%, 50%, 0.880);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 20%;
+    z-index: 1;
+}
 
-        lastBkgIdx = bkgIdx;
+.logo-animation0 {
+    transform: translate(90%, 300%);
+    transition: 0.4s;
+    transition-timing-function: ease-in;
+}
+.logo-animation1 {
+    transform: translate(23%, 143%);
+    transition: 0.15s;
+    transition-timing-function: ease-in;
+}
+.logo-animation2 {
+    transform: translate(-17%, 225%);
+    transition: 0.3s;
+    transition-timing-function: ease-in;
+}
+.logo-animation3 {
+    transform: translate(10%, 480%);
+    transition: 0.5s;
+    transition-timing-function: ease-in;
+}
 
-        // Save the last background index in localStorage so that
-        // we can keep track of the last image that was presented
-        // to the user
-        localStorage.setItem("lastBkgIdx", lastBkgIdx);
-
-        let bkg = backgrounds[bkgIdx];
-        bkgEle.style.background = `url("${bkg}")`;
-
-        // Increment change count so that we keep track of how many
-        // times the backgroud has changed and we can terminate based
-        // on the value specified in _times_
-        bkgChangeCount += 1;
-
-        // Terminate backkground change after _times_ cycles
-        if (bkgChangeCount < times) {
-            timeoutId = setTimeout(changeBackground, intervalSec * 1000);
-        }
-    };
-
-    changeBackground();
-};
+.body-animation {
+    transition: 1s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
