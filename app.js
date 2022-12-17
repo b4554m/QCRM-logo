@@ -1,3 +1,4 @@
+    // The below code executes after DOM content loaded. Animate logo boxes upon load by assigning a new class for each box
 document.onreadystatechange = function () {
     if (document.readyState !== "complete")
         return;
@@ -15,7 +16,7 @@ document.onreadystatechange = function () {
         el1[0].className = el1[0].className + " " + "remove-outer-box-animation";
     }, 10);
 
-    // The above code executes after DOM content loaded. Animate logo boxes upon load by assigning a new class for each box
+
     document.body.className = document.body.className + " body-animation";
 
     let intervalSec = 10; // How many seconds between each background change?
