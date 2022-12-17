@@ -20,6 +20,10 @@ body {
     
 }
 
+.wrap-info {
+    transform: perspective(1000px) rotateX(-40deg);
+}
+
 .outer-box {
     display: flex;
     flex-direction: column;
@@ -28,6 +32,11 @@ body {
     border: none;
     background-color: hsl(200, 36%, 95%);
     opacity: 0.9;
+}
+
+.remove-outer-box-animation {
+    transition: 0.5s;
+    transform: perspective(1000px) rotateX(32.5deg) scale(1, 1.5);
 }
 
 .inner-section {
@@ -150,11 +159,4 @@ div .box:last-child {
 .body-animation {
     transition: 1s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-.remove-outer-box-animation {
-    transition: 0.5s;
-    transform: perspective(1000px) rotateX(32.5deg) scale(1, 1.5);
-}
-.wrap-info {
-    transform: perspective(1000px) rotateX(-40deg);
 }
