@@ -20,6 +20,9 @@ body {
     
 }
 
+.wrap-info {
+    transform: perspective(1000px) rotateX(-40deg);
+}
 
 .outer-box {
     display: flex;
@@ -30,6 +33,10 @@ body {
     background-color: hsl(200, 36%, 95%);
     opacity: 0.9;
 }
+.remove-outer-box-animation {
+    transition: 0.5s;
+    transform: perspective(1000px) rotateX(32.5deg) scale(1, 1.5);
+}
 
 .inner-section {
     position: absolute;
@@ -38,19 +45,14 @@ body {
     display: grid;
     place-items: center;
     margin-bottom: 32rem;
-
 }
 .inner-box {
     display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
     align-items: center;
-    flex-wrap: wrap;
     width: 7rem;
     height: 7rem;
     background-color: white;
     border-radius: 20%;
-    justify-content: center;
 }
 h1 {
     text-align: center;
@@ -92,7 +94,8 @@ input {
 }
 
 div .box:first-child {
-    display: flex;
+    position: absolute;
+    bottom: 140%;
     background-color: hsla(34, 100%, 50%, 0.900);
     width: 2rem;
     height: 2rem;
@@ -100,7 +103,9 @@ div .box:first-child {
     z-index: 0;
 }
 div .box:nth-child(2) {
-    display: flex;
+    position: absolute;
+    top: 5%;
+    left: 25%;
     background-color: hsl(202, 100%, 50%, 0.920);
     width: 2rem;
     height: 2rem;
@@ -108,7 +113,9 @@ div .box:nth-child(2) {
     z-index: 3;
 }
 div .box:nth-child(3) {
-    display: flex;
+    position: absolute;
+    bottom: 105%;
+    left: 60%;
     background-color: hsla(325, 66%, 45%, 0.850);
     width: 2rem;
     height: 2rem;
@@ -117,7 +124,9 @@ div .box:nth-child(3) {
 }
 
 div .box:last-child {
-    display: flex;
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
     background-color: hsla(123, 48%, 50%, 0.880);
     width: 2rem;
     height: 2rem;
@@ -126,34 +135,27 @@ div .box:last-child {
 }
 
 .logo-animation0 {
-    transform: translate(55%, -25%);
-    transition: 1.5s;
+    transform: translate(90%, 300%);
+    transition: 0.4s;
     transition-timing-function: ease-in;
 }
 .logo-animation1 {
-    transform: translate(55%, -56%);
-    transition: 1.5s;
+    transform: translate(23%, 143%);
+    transition: 0.15s;
     transition-timing-function: ease-in;
 }
 .logo-animation2 {
-    transform: translate(-90%, 25%);
-    transition: 1.5s;
+    transform: translate(-17%, 225%);
+    transition: 0.3s;
     transition-timing-function: ease-in;
 }
 .logo-animation3 {
-    transform: translate(-90%, -7%);
-    transition: 1.5s;
+    transform: translate(10%, 480%);
+    transition: 0.5s;
     transition-timing-function: ease-in;
 }
 
 .body-animation {
     transition: 1s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-.remove-animation {
-    transition: 0.5s;
-    transform: perspective(1000px) rotateX(32.5deg) scale(1, 1.5);
-}
-.wrap-info {
-    transform: perspective(1000px) rotateX(-40deg);
 }
